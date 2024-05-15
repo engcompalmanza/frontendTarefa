@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+.tarefa{
+	height: 75vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 16px;
+}
+
+.formularioT{
+	width: 400px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	border: 1px solid #696969;
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+.inputStyleT{
+	outline: none;
+	border: none;
+	border-bottom: 1px solid gray;
+	font-size: 1em;
+}
+
+.textStyleT{
+	font-size: 1em;
+}
+
+.botaoT{
+	color: white;
+	background-color: blueviolet;
+	transition: color 0.5s ease;
+	transition: background-color 0.5s ease;
+}
+
+.botaoT:hover{
+	color: blueviolet;
+	background-color: white;
+}
+
+.camposObrigatoriosT{
+	margin: 0;
+	font-size: 0.9em;
+}

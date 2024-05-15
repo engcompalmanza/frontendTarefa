@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+.projeto{
+	height: 75vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 16px;
+}
+
+.formularioP{
+	width: 400px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	border: 1px solid #696969;
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+.inputStyleP{
+	outline: none;
+	border: none;
+	border-bottom: 1px solid gray;
+	font-size: 1em;
+}
+
+.textStyleP{
+	font-size: 1em;
+}
+
+.botaoP{
+	color: white;
+	background-color: blueviolet;
+	transition: color 0.5s ease;
+	transition: background-color 0.5s ease;
+}
+
+.botaoP:hover{
+	color: blueviolet;
+	background-color: white;
+}
+
+.camposObrigatoriosP{
+	margin: 0;
+	font-size: 0.9em;
+}
