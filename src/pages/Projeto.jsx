@@ -1,11 +1,21 @@
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 import {useState} from "react";
 import axios from 'axios';
+
+import {useParams} from "react-router-dom";
+
+import { useNavigate } from 'react-router-dom';
 
 import {UrlApi} from "../utils/UrlApi.jsx";
 
 import "../css/Projeto.css";
 
 function Projeto(){
+	const navigate = useNavigate();
+	const {uid} = useParams();
+
 	const [dados, setDados] = useState({titulo: '', desc: ''});
 	const [erroPreenchimento, setErroPreenchimento] = useState(false);
 	const [msgSucesso, setmsgSucesso] = useState(false);
@@ -22,11 +32,12 @@ function Projeto(){
 				descricao: dados.desc
 			}
 
-		    axios.post(UrlApi()+"projetos", data)
+		    axios.post(UrlApi()+"projetos/"+uid, data)
 		    .then(response => {
 		    	setmsgSucesso(true);
 		    	setTimeout(() => {
-      				window.location.reload(); 
+		    		navigate("/gerenciamento/"+uid);
+      				{/*}window.location.reload(); {*/}
     			}, 2500);
 		    })
 		    .catch(error => {
@@ -50,7 +61,7 @@ function Projeto(){
           		
           		<input className="inputStyleP" id="titulo" name="titulo" type="text" placeholder="* Título do Projeto" value={dados.titulo} onChange={(e) => {handleChange(e)}}/>
           		<textarea className="textStyleP" name="desc" id="desc" rows="5" placeholder="Descrição do projeto ...    (Opcional)" onChange={(e) => {handleChange(e)}}></textarea>
-          		<button className="botaoP" type="submit">Cadastrar</button>
+        		<Button variant="contained" type="submit">Cadastrar</Button>
         	</form> 
 		</div>
 	);

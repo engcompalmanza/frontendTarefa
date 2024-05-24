@@ -1,7 +1,11 @@
 @charset "utf-8";
 
 .projeto{
-	height: 75vh;
+	height: 72vh;
+	background-image: url("../img/cadastrousuario.jpg");
+  	background-size: 99vw auto;
+  	background-repeat: no-repeat;
+  	background-position: center;
 
 	display: flex;
 	justify-content: center;
@@ -25,6 +29,7 @@
 }
 
 .inputStyleP{
+	background-color: rgba(255, 255, 255, 0);
 	outline: none;
 	border: none;
 	border-bottom: 1px solid gray;
@@ -33,18 +38,6 @@
 
 .textStyleP{
 	font-size: 1em;
-}
-
-.botaoP{
-	color: white;
-	background-color: blueviolet;
-	transition: color 0.5s ease;
-	transition: background-color 0.5s ease;
-}
-
-.botaoP:hover{
-	color: blueviolet;
-	background-color: white;
 }
 
 .camposObrigatoriosP{

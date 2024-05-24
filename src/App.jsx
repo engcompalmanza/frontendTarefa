@@ -5,6 +5,8 @@ import Projeto from "./pages/Projeto";
 import Tarefa from "./pages/Tarefa";
 import Usuario from "./pages/Usuario";
 
+import Gerenciamento from "./pages/Gerenciamento";
+
 import Navegacao from "./pages/Navegacao.jsx";
 import Rodape from "./pages/Rodape.jsx";
 
@@ -18,9 +20,10 @@ function App() {
       <BrowserRouter>
         <Routes>  
           <Route path="/" element={<Home/>}/>
-          <Route path="/projeto" element={<Projeto/>}/>
-          <Route path="/tarefa" element={<Tarefa/>}/>
+          <Route path="/projeto/:uid" element={<Projeto/>}/>
+          <Route path="/tarefa/:uid/:pid" element={<Tarefa/>}/>
           <Route path="/usuario" element={<Usuario/>}/>
+          <Route path="/gerenciamento/:uid" element={<Gerenciamento/>}/>
         </Routes>
       </BrowserRouter>
       <Rodape/>

@@ -1,17 +1,19 @@
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import React, { useState, useRef,useEffect } from 'react';
 import axios from 'axios';
-
 import {UrlApi} from "../utils/UrlApi.jsx";
-
+import {useParams} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import "../css/Tarefa.css";
 
 function Tarefa(){
-	const [dados, setDados] = useState({titulo: '', desc: '', venc: '', prioridade: '', status: '', projeto: ''});
+	const navigate = useNavigate();
+	const {uid, pid} = useParams();
+	const [dados, setDados] = useState({titulo: '', desc: '', venc: '', prioridade: '', status: ''});
 	const [erroPreenchimento, setErroPreenchimento] = useState(false);
 	const [msgSucesso, setmsgSucesso] = useState(false);
 	const [erro, setErro] = useState(null);
-
-	const [projetos, setProjetos] = useState([]);
 	const [status, setStatus] = useState([]);
 
 	function handleChange(event){
@@ -19,21 +21,21 @@ function Tarefa(){
   	}
 
   	function submeter(event){
-		if(dados.titulo != '' && dados.venc != '' && dados.prioridade != '' && dados.status != '' && dados.projeto != ''){
+		if(dados.titulo != '' && dados.venc != '' && dados.prioridade != '' && dados.status != ''){
 			const data = {
 				titulo: dados.titulo,
 				descricao: dados.desc,
 				vencimento: dados.venc,
 				prioridade: dados.prioridade,
 				status: dados.status,
-				projeto: dados.projeto
+				projeto: pid
 			}
 
-		    axios.post(UrlApi()+"tarefas", data)
+		    axios.post(UrlApi()+"tarefas/"+uid, data)
 		    .then(response => {
 		    	setmsgSucesso(true);
 		    	setTimeout(() => {
-      				window.location.reload(); 
+      				navigate("/gerenciamento/"+uid);
     			}, 2500);
 		    })
 		    .catch(error => {
@@ -46,14 +48,6 @@ function Tarefa(){
 	}
 
 	useEffect(() => {
-	  	axios.get(UrlApi()+"projetos")
-	    .then((response) => {
-			setProjetos(response.data);        
-	    })
-	    .catch((error) => {
-	    	setErro(error);
-	    });
-
 	    axios.get(UrlApi()+"status")
 	    .then((response) => {
 			setStatus(response.data);        
@@ -93,6 +87,7 @@ function Tarefa(){
 			    		))}
 			    	</select>
 			    </label>
+			    {/*}
 			    <label>
 			    	<label htmlFor="projeto">* Vincular com Projeto:  </label>
 			    	<select id="projeto" name="projeto" onChange={(e) => {handleChange(e)}}>
@@ -104,8 +99,8 @@ function Tarefa(){
 				          ))}
 			    	</select>
 			    </label>
-
-          		<button className="botaoT" type="submit">Cadastrar</button>
+				{*/}
+        		<Button variant="contained" type="submit">Cadastrar</Button>
         	</form> 
 		</div>
 	);

@@ -1,3 +1,8 @@
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useState, useRef,useEffect} from 'react';
 import axios from 'axios';
 
@@ -10,6 +15,8 @@ function Usuario(){
 	const [erroPreenchimento, setErroPreenchimento] = useState(false);
 	const [msgSucesso, setmsgSucesso] = useState(false);
 	const [erro, setErro] = useState(null);
+
+	const navigate = useNavigate();
 
 	function handleChange(event){
     	setDados({...dados, [event.target.name]:event.target.value});
@@ -27,10 +34,13 @@ function Usuario(){
 
 		    axios.post(UrlApi()+"usuarios", data)
 		    .then(response => {
+		    	let usuario = response.data;
 		    	setmsgSucesso(true);
+
 		    	setTimeout(() => {
-      				window.location.reload(); 
+      				navigate("/gerenciamento/"+usuario.id);
     			}, 2500);
+
 		    })
 		    .catch(error => {
 		    	setErro(error);
@@ -55,7 +65,7 @@ function Usuario(){
           		<input className="inputStyleU" id="email" name="email" type="email" placeholder="* E-mail" onChange={(e) => {handleChange(e)}}/>
           		<input className="inputStyleU" id="senha" name="senha" type="password" placeholder="* Senha" onChange={(e) => {handleChange(e)}}/>
 
-          		<button className="botaoU" type="submit">Cadastrar</button>
+        		<Button variant="contained" type="submit">Cadastrar</Button>
         	</form> 
 		</div>
 	);
